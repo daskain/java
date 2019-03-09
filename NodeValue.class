@@ -1,0 +1,25 @@
+class NodeValue {
+public String nodeValue(String nodeText, HttpServletRequest request) {
+		String value = new String();
+		try {
+			
+			
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder builder = factory.newDocumentBuilder();
+			Document parser = builder.parse(request.getInputStream());
+			NodeList paramNodeList = parser.getElementsByTagName(nodeText);
+			for (int i = 0; i < paramNodeList.getLength(); i++){
+				
+				paramNodeList.item(i).getTextContent();
+				value = paramNodeList.item(i).getTextContent();
+				
+							
+			}
+			
+			}
+			catch (Exception ex){
+				ex.printStackTrace();
+			}
+		return value;
+	}
+}
