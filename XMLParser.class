@@ -1,0 +1,39 @@
+package core;
+
+import java.util.HashMap;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+public class XMLParser{
+	HashMap<String, String> map;
+	public XMLParser(HttpServletRequest request) {
+		// TODO Auto-generated constructor stub
+		
+		try {
+			map = new HashMap<String, String>();
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder builder = factory.newDocumentBuilder();
+			Document parser = builder.parse(request.getInputStream());
+			Element response = parser.getDocumentElement();
+			NodeList paramNodeList = response.getChildNodes();
+			for (int i = 0; i < paramNodeList.getLength(); i++) {
+				Node node = paramNodeList.item(i);
+				map.put(node.getNodeName(), node.getTextContent());
+			}
+		}
+			catch (Exception ex){
+				ex.printStackTrace();
+			}
+		//return;
+	}
+	
+
+}
+
