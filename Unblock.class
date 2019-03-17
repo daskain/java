@@ -1,0 +1,13 @@
+package test;
+
+public class Unblock {
+	String getTid;
+	String getAmount;
+	
+	public Unblock(String tid, String amount) {
+		getTid = tid;
+		getAmount = amount;
+        
+	}
+	
+}
