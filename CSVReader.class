@@ -1,0 +1,39 @@
+package test;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+
+
+public class CSVReader {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		List<Unblock> newUnblock = new ArrayList<Unblock>();		
+		BufferedReader reader;
+		try {
+			reader = new BufferedReader(new FileReader(
+					source));
+			String line = reader.readLine();
+			while (line != null) {
+				String[] buf= line.split(";");
+				Unblock event = new Unblock(buf[0], buf[1]);
+				newUnblock.add(event);
+				line = reader.readLine();
+			}
+			reader.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		for (Unblock get : newUnblock) {
+			System.out.println(get.getTid + " " + get.getAmount);
+		}
+
+	}
+	
+	
+
+}
